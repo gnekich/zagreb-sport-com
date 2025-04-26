@@ -1,0 +1,54 @@
+name: Build & Deploy Cloudflare Pages (React App)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9.15.4
+          run_install: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23.x"
+          cache: "pnpm"
+          cache-dependency-path: "./react-frontend/pnpm-lock.yaml"
+
+      - name: Install dependencies
+        working-directory: ./react-frontend
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
+        working-directory: ./react-frontend
+        env:
+          VITE_PUBLIC_SITE_NAME: ${{ vars.VITE_PUBLIC_SITE_NAME }}
+          VITE_FIREBASE_APP_API_KEY: ${{ vars.VITE_FIREBASE_APP_API_KEY }}
+          VITE_FIREBASE_APP_AUTH_DOMAIN: ${{ vars.VITE_FIREBASE_APP_AUTH_DOMAIN }}
+          VITE_FIREBASE_APP_PROJECT_ID: ${{ vars.VITE_FIREBASE_APP_PROJECT_ID }}
+          VITE_FIREBASE_APP_STORAGE_BUCKET: ${{ vars.VITE_FIREBASE_APP_STORAGE_BUCKET }}
+          VITE_FIREBASE_APP_MESSAGING_SENDER_ID: ${{ vars.VITE_FIREBASE_APP_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_APP_APP_ID: ${{ vars.VITE_FIREBASE_APP_APP_ID }}
+          VITE_FIREBASE_APP_MEASUREMENT_ID: ${{ vars.VITE_FIREBASE_APP_MEASUREMENT_ID }}
+
+      - name: Sanity check
+        run: "pwd && ls -la"
+
+      - name: Publish
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          directory: pages
+          workingDirectory: wrangler-cloudflare-pages

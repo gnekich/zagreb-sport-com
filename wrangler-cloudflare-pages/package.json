@@ -1,0 +1,11 @@
+{
+	"scripts": {
+		"create": "wrangler pages project create zagreb-sport-web-platform",
+		"login": "wrangler login --callback-host=0.0.0.0",
+		"deploy": "wrangler pages deploy",
+		"dev": "wrangler pages dev"
+	},
+	"dependencies": {
+		"wrangler": "^4.12.0"
+	}
+}

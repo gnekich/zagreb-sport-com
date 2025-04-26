@@ -1,0 +1,4 @@
+node_modules/
+
+# We want to ignore anything in pages as react-frontend will build and move contents inside
+pages/*
