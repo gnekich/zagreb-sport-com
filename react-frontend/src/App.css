@@ -1,0 +1,27 @@
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.construction-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.construction-page h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.construction-page p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
