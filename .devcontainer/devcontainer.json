@@ -1,0 +1,42 @@
+{
+  "name": "Node.js Dev Container",
+  // "image": "mcr.microsoft.com/devcontainers/javascript-node:dev-22-bookworm",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": {
+    "Fix pnpm version": "npm install -g pnpm@latest && pnpm config set store-dir /home/node/.local/share/pnpm",
+    // "Fix pnpm version - 2": "sudo mkdir -p /cache/pnpm && sudo chown node:node /cache/pnpm && npm install -g pnpm@latest && pnpm config set store-dir /cache/pnpm", !!! Does not work !!!
+    "Persistant bash history - Fix Volume Permissions": "sudo mkdir -p /cache && sudo chown -R $(whoami): /cache",
+    "Add history to .bashrc": "echo $BASH_HISTORY_SNIPPET >> ~/.bashrc"
+    // "CLI Development - Install CLI globaly": "pnpm install && npm install -g .", // Perfect for CLI development
+    // "Frontend Development - Run vitejs dev": "cd react-frontend && pnpm install && pnpm run dev",
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      },
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "github.copilot"
+      ]
+    }
+  },
+  // "forwardPorts": [3000, 5173],
+  // "mounts": ["source=${localWorkspaceFolder}/node_modules,target=${containerWorkspaceFolder}/node_modules,type=bind"],
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/developer/.wrangler/,target=/root/.config/.wrangler/,type=bind",
+    "source=${localWorkspaceFolder}/.devcontainer/cache,target=/cache,type=bind"
+  ],
+  "containerEnv": {
+    "PNPM_HOME": "/home/node/.local/share/pnpm",
+    // "PNPM_HOME": "/cache/pnpm", // Does not work !!!
+    "BASH_HISTORY_SNIPPET": "export PROMPT_COMMAND='history -a' && export HISTFILE=/cache/.bash_history"
+    // "PNPM_HOME": "/usr/local/share/pnpm"
+    // "PNPM_HOME": "/home/${USER}/.local/share/pnpm"
+    // "PATH": "${PNPM_HOME}/bin:${PATH}" // DO NOT DO THIS - It breaks dev container!
+  },
+  "remoteUser": "root"
+}
