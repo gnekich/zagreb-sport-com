@@ -61,20 +61,26 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <Container disableGutters>
+    <Container disableGutters sx={{ mt: 4, height: "100vh" }}>
       {/* Header Section */}
-      <Stack sx={{ mt: 4, height: "80vh" }} alignItems="center" spacing={2}>
+      <Stack alignItems="center" spacing={2} sx={{ mt: 4 }}>
         <img
           src="/Mali_ZAGI.png"
           alt=" Logo"
           style={{ width: 350, height: 350 }}
         />
-        <Typography variant="h2" color="primary" gutterBottom>
+        <Typography
+          variant="h2"
+          color="primary"
+          textAlign={"center"}
+          gutterBottom
+        >
           Zagreb Sport
         </Typography>
         <Stack spacing={1} alignItems="center">
-          <Typography variant="body1">
-            A platform for helping you track the best sports in Zagreb!
+          <Typography variant="body1" textAlign={"center"}>
+            Platforma koja vam pomaže pratiti najbolje sportske događaje u
+            Zagrebu!
           </Typography>
         </Stack>
 
@@ -90,26 +96,36 @@ const Home: React.FC = () => {
         </Box> */}
       </Stack>
 
-      <Stack
-        sx={{ mt: 4, height: "120vh" }}
+      <Box
+        sx={{ mt: 4, height: "100vh" }}
+        flex={1}
         direction="column"
         spacing={2}
         justifyContent="center"
         alignItems="center"
       >
-        <Typography variant="h1" color="primary" gutterBottom>
+        {/* <Box sx={{ height: "300px" }}> */}
+        <Typography
+          sx={{ textAlign: "center" }}
+          variant="h1"
+          color="primary"
+          gutterBottom
+        >
           Sportska događanja koja ne smijete propustiti
         </Typography>
+
         <Typography variant="h2" color="secondary" gutterBottom>
           Sport je oduvijek bio velika strast u gradu, a tijekom godine Zagreb
           je domaćin mnogobrojnim sportskim događanjima. Otkrijte i posjetite
           neko od njih…
         </Typography>
+
         {/* Latest Događanja Section */}
 
-        <Typography variant="h4" gutterBottom>
+        <Typography sx={{ mt: 8 }} variant="h4" gutterBottom>
           Najnovija Događanja
         </Typography>
+        {/* </Box> */}
         {loading && (
           <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
             <CircularProgress />
@@ -125,7 +141,7 @@ const Home: React.FC = () => {
         {data && (
           <Grid container spacing={4}>
             {data.feed.map((event: any) => (
-              <Grid item xs={12} sm={6} md={4} key={event.id}>
+              <Grid item xs={6} sm={6} md={4} key={event.id}>
                 <Card
                   sx={{
                     maxWidth: 345,
@@ -151,22 +167,24 @@ const Home: React.FC = () => {
                       }}
                     />
                   )}
-                  <CardContent>
-                    {!!event.subject && (
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ fontWeight: "bold", mb: 1 }}
-                      >
-                        {event.subject}
-                      </Typography>
-                    )}
-                    {!!event.description && (
-                      <Typography variant="body2" color="text.secondary">
-                        {event.description}
-                      </Typography>
-                    )}
-                  </CardContent>
+                  {!!event.subject && (
+                    <CardContent>
+                      {!!event.subject && (
+                        <Typography
+                          variant="h6"
+                          component="div"
+                          sx={{ fontWeight: "bold", mb: 1 }}
+                        >
+                          {event.subject}
+                        </Typography>
+                      )}
+                      {!!event.description && (
+                        <Typography variant="body2" color="text.secondary">
+                          {event.description}
+                        </Typography>
+                      )}
+                    </CardContent>
+                  )}
                 </Card>
               </Grid>
             ))}
@@ -196,16 +214,16 @@ const Home: React.FC = () => {
               </Grid>
             ))}
           </Grid> */}
-      </Stack>
+        {/* </Box>
 
-      <Stack
-        sx={{ mt: 4, height: "80vh" }}
+      <Box
+        sx={{ mt: 40, height: "100vh" }}
         direction="column"
         spacing={2}
         justifyContent="center"
         alignItems="center"
-      >
-        <Typography variant="h4" gutterBottom>
+      > */}
+        <Typography sx={{ mt: 8 }} variant="h4" gutterBottom>
           Najnoviji Rezultati
         </Typography>
 
@@ -243,10 +261,13 @@ const Home: React.FC = () => {
             ))}
           </Grid>
         )}
-      </Stack>
-      {/* Footer Section */}
-      <Stack spacing={2} sx={{ mt: 4 }}>
-        <Stack direction="row" spacing={2} justifyContent="center">
+
+        <Stack
+          sx={{ mt: 8 }}
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+        >
           <Link
             href={blueSkyProfileUrl}
             target="_blank"
@@ -266,7 +287,7 @@ const Home: React.FC = () => {
             Terms & Privacy
           </Link>
         </Stack>
-      </Stack>
+      </Box>
     </Container>
   );
 };
