@@ -22,11 +22,16 @@ import { useQuery, useMutation, gql } from "@apollo/client";
 // GraphQL Mutation
 const READ_FEED = gql`
   query ReadFeed {
-    feed(order_by: { created_at: desc_nulls_last }) {
+    feed(order_by: { created_at: desc_nulls_last }, limit: 12) {
       id
       subject
       slika_url
       description
+    }
+    rezultati(order_by: { created_at: desc_nulls_last }, limit: 3) {
+      #id
+      payload
+      created_at
     }
   }
 `;
@@ -103,7 +108,7 @@ const Home: React.FC = () => {
         {/* Latest Događanja Section */}
 
         <Typography variant="h4" gutterBottom>
-          Latest Događanja
+          Najnovija Događanja
         </Typography>
         {loading && (
           <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
@@ -193,6 +198,52 @@ const Home: React.FC = () => {
           </Grid> */}
       </Stack>
 
+      <Stack
+        sx={{ mt: 4, height: "70vh" }}
+        direction="column"
+        spacing={2}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Typography variant="h4" gutterBottom>
+          Najnoviji Rezultati
+        </Typography>
+
+        {data && (
+          <Grid container spacing={4} fullWidth direction={"column"}>
+            {data.rezultati.map((event: any) => (
+              <Grid item key={event.id} fullWidth sx={{ width: "100%" }}>
+                <Card
+                  sx={{
+                    width: "100%",
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    transition: "transform 0.2s, box-shadow 0.2s",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                      boxShadow: 6,
+                    },
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h2" color="text.secondary">
+                      Objavio ZICER:
+                    </Typography>
+                    {!!event.payload &&
+                      event.payload?.poredak?.map((item) => {
+                        return (
+                          <Typography variant="h6" color="text.secondary">
+                            {`${item.mjesto}# | Bodovi: ${item.bodovi} | Team: ${item.ime} `}
+                          </Typography>
+                        );
+                      })}
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </Stack>
       {/* Footer Section */}
       <Stack spacing={2} sx={{ mt: 4 }}>
         <Stack direction="row" spacing={2} justifyContent="center">
