@@ -32,6 +32,7 @@ jobs:
         run: pnpm run build
         working-directory: ./react-frontend
         env:
+          VITE_PUBLIC_API_URL: ${{ vars.VITE_PUBLIC_API_URL }}
           VITE_PUBLIC_SITE_NAME: ${{ vars.VITE_PUBLIC_SITE_NAME }}
           VITE_FIREBASE_APP_API_KEY: ${{ vars.VITE_FIREBASE_APP_API_KEY }}
           VITE_FIREBASE_APP_AUTH_DOMAIN: ${{ vars.VITE_FIREBASE_APP_AUTH_DOMAIN }}
