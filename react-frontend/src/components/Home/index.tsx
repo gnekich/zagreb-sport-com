@@ -63,7 +63,7 @@ const Home: React.FC = () => {
   return (
     <Container disableGutters>
       {/* Header Section */}
-      <Stack alignItems="center" spacing={2}>
+      <Stack sx={{ mt: 4, height: "80vh" }} alignItems="center" spacing={2}>
         <img
           src="/Mali_ZAGI.png"
           alt=" Logo"
@@ -91,7 +91,7 @@ const Home: React.FC = () => {
       </Stack>
 
       <Stack
-        sx={{ mt: 4, height: "100vh" }}
+        sx={{ mt: 4, height: "120vh" }}
         direction="column"
         spacing={2}
         justifyContent="center"
@@ -199,7 +199,7 @@ const Home: React.FC = () => {
       </Stack>
 
       <Stack
-        sx={{ mt: 4, height: "70vh" }}
+        sx={{ mt: 4, height: "80vh" }}
         direction="column"
         spacing={2}
         justifyContent="center"
