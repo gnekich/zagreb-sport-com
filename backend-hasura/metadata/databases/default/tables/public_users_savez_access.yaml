@@ -1,0 +1,3 @@
+table:
+  name: users_savez_access
+  schema: public

@@ -1,0 +1,3 @@
+table:
+  name: sports
+  schema: public

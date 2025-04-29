@@ -1,0 +1,24 @@
+table:
+  name: rezultati
+  schema: public
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - created_at
+        - id
+        - payload
+        - savez_id
+        - updated_at
+      filter: {}
+    comment: ""
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - id
+        - payload
+        - savez_id
+        - updated_at
+      filter: {}
+    comment: ""

@@ -3,6 +3,10 @@ name: Build & Deploy Cloudflare Pages (React App)
 on:
   push:
     branches: [main]
+    paths:
+      - react-frontend/**
+      - wrangler-cloudflare-pages/**
+      - .github/workflows/**
 
 jobs:
   build:

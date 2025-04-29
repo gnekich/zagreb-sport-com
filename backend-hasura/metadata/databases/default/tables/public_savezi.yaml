@@ -1,0 +1,13 @@
+table:
+  name: savezi
+  schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - kontakt_email
+        - name
+        - web_url
+        - id
+      filter: {}
+    comment: ""
