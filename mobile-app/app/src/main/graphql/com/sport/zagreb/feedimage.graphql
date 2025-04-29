@@ -1,0 +1,5 @@
+query GetImgFeed {
+    feed {
+        slika_url
+    }
+}

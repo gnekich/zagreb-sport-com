@@ -1,0 +1,8 @@
+query GetFullFeed {
+    feed {
+        id
+        subject
+        description
+        slika_url
+    }
+}

@@ -1,0 +1,7 @@
+query GetFeed {
+  feed {
+    id
+    subject
+    description
+  }
+}

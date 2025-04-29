@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ZagrebSPORT" parent="android:Theme.Material.Light.NoActionBar" >
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+
+</resources>

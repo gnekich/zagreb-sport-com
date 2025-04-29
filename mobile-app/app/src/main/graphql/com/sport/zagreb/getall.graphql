@@ -1,0 +1,11 @@
+query DohvatiMiSve {
+    feed {
+        subject
+        slika_url
+        description
+    }
+    rezultati {
+        #id
+        payload
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "861178548813",
+    "project_id": "zagreb-sport",
+    "storage_bucket": "zagreb-sport.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861178548813:android:bd5f72dad66d987004c204",
+        "android_client_info": {
+          "package_name": "com.sport.zagreb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPYQGfrxlNzrbIKoNfVZM8molK2njSaqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
